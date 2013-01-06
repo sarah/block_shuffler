@@ -36,8 +36,7 @@ class ShuffledColors
     else
       lightened_color = lighten(color)
       altered_color = block.call(lightened_color)
-      color_pair << lightened_color
-      color_pair << altered_color
+      color_pair << lightened_color << altered_color
     end
 
     self.shuffled_colors << color_pair
