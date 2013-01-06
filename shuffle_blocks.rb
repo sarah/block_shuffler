@@ -30,14 +30,9 @@ end
 class ShuffledColors
   def lighten_color(color, &color_modifier_block)
     color_pair = []
-    if initial_color?
-      altered_color = color_modifier_block.call(color)
-      color_pair << color << altered_color
-    else
-      lightened_color = lighten(color)
-      altered_color = color_modifier_block.call(lightened_color)
-      color_pair << lightened_color << altered_color
-    end
+    color = (initial_color?) ? color : lighten(color)
+    altered_color = color_modifier_block.call(color)
+    color_pair << color << altered_color
 
     self.shuffled_colors << color_pair
     return shuffled_colors if final_color?(altered_color)
