@@ -6,23 +6,26 @@ BlueStrings = %w(blue sad sky cold guitar tiffanys ice end )
 RedStrings = %w(red pink orange pinkish salmon skin love heat embarrasment rose warm end)
 LightStrings = %w(sun stars bright yellow shine happy excite bounce air sparkle)
 
+# When not included in module, I can reference these with & and pass them to the method
+# with an ampersand. When referencing them as return values from methods inside a module
+# the ampersand throws an argument error. Not sure why.
 make_bluer = lambda{|lighter_color|
-  lighter_color + "_" + BlueStrings.sample # make bluer
+  lighter_color + "_" + BlueStrings.sample
 }
 make_redder = lambda{|lighter_color|
-  lighter_color + "_" + RedStrings.sample # make redder
+  lighter_color + "_" + RedStrings.sample
 }
 
 module ColorMods
   def self.make_bluer
     lambda{|lighter_color|
-      lighter_color + "_" + BlueStrings.sample # make bluer
+      lighter_color + "_" + BlueStrings.sample
     }
   end
 
   def self.make_redder
     lambda{|lighter_color|
-      lighter_color + "_" + RedStrings.sample # make redder
+      lighter_color + "_" + RedStrings.sample
     }
   end
 end
