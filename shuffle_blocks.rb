@@ -7,22 +7,21 @@ RedStrings = %w(red pink orange pinkish salmon skin love heat embarrasment rose 
 LightStrings = %w(sun stars bright yellow shine happy excite bounce air sparkle)
 
 make_bluer = lambda{|lighter_color|
-  bluer_color = lighter_color + "_" + BlueStrings.sample
-  puts "bluer color: #{bluer_color}"
-  bluer_color
+  lighter_color + "_" + BlueStrings.sample # make bluer
 }
 make_redder = lambda{|lighter_color|
-  redr_color = lighter_color + "_" + RedStrings.sample
-  puts "redder color: #{redr_color}"
-  redr_color
+  lighter_color + "_" + RedStrings.sample # make redder
 }
 
 class ShuffledColors
   def lighten_color(color, &block)
-    # puts "in lighten_color with #{color}"
-    color = color + "_" + LightStrings.sample
-    newcolor = block.call(color)
-    self.shuffled_colors << newcolor
+    pair = []
+    pair << color # add initial color
+    color = color + "_" + LightStrings.sample # lighten color
+    newcolor = block.call(color) # mod color
+
+    pair << newcolor # add modded color
+    self.shuffled_colors << pair
     if newcolor =~ /end/
       return shuffled_colors
     else

@@ -1,5 +1,11 @@
-%h1 Hi
--colors.each do |color|
-  %br
-  =color
+%html
+  %head
+  %body
+    %h1 Hi
+    -colors.each do |pair|
+      -one, two = pair
+      .one
+        =one
+      .two
+        =two
 
