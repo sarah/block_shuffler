@@ -33,6 +33,7 @@ class ShuffledColors
     altered_color = color_modifier_block.call(color)
     self.shuffled_colors << [color, altered_color]
     return shuffled_colors if final_color?(altered_color)
+
     lighten_color(altered_color, &color_modifier_block)
   end
 
