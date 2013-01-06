@@ -16,15 +16,24 @@ make_redder = lambda{|lighter_color|
 class ShuffledColors
   def lighten_color(color, &block)
     color_pair = []
+    if initial_run?
+      color_pair << color
+      altered_color = block.call(color) # mod color
+      color_pair << altered_color
+    else
+      color = lighten(color)
+      altered_color = block.call(color) # mod color
+      color_pair << color
+      color_pair << altered_color
+    end
 
+    # color_pair << color if initial_run?
+    # color = lighten(color)
 
-    color_pair << color if initial_run?
-    color = lighten(color)
+    # color_pair << color unless initial_run?
+    # altered_color = block.call(color) # mod color
 
-    color_pair << color unless initial_run?
-    altered_color = block.call(color) # mod color
-
-    color_pair << altered_color # add modded color
+    # color_pair << altered_color # add modded color
     self.shuffled_colors << color_pair
 
     return shuffled_colors if final?(altered_color)
