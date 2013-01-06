@@ -1,0 +1,10 @@
+.one{
+  border: 1px solid red;
+  float: left;
+  width: 75%;
+}
+.two{
+  border: 1px solid blue;
+  float: right;
+  width: 75%;
+}
