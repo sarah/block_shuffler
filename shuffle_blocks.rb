@@ -13,16 +13,30 @@ make_redder = lambda{|lighter_color|
   lighter_color + "_" + RedStrings.sample # make redder
 }
 
+module ColorMods
+  def self.make_bluer
+    lambda{|lighter_color|
+      lighter_color + "_" + BlueStrings.sample # make bluer
+    }
+  end
+
+  def self.make_redder
+    lambda{|lighter_color|
+      lighter_color + "_" + RedStrings.sample # make redder
+    }
+  end
+end
+
 class ShuffledColors
   def lighten_color(color, &block)
     color_pair = []
     if initial_color?
       color_pair << color
-      altered_color = block.call(color) # mod color
+      altered_color = block.call(color)
       color_pair << altered_color
     else
       lightened_color = lighten(color)
-      altered_color = block.call(lightened_color) # mod color
+      altered_color = block.call(lightened_color)
       color_pair << lightened_color
       color_pair << altered_color
     end
